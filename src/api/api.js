@@ -7,14 +7,15 @@ const base = {
 }
 const banner = {
     getData() {
-        return axios.get(base.baseUrl + base.banner, { params: { username: 'ximing' } })
+        return axios.get(base.baseUrl + base.banner, { params: { id: 'ximing' } })
     }
 }
 const comments = {
-    postData() {
-        return axios.post()
+    postData(data) {
+        return axios.post(base.baseUrl + base.postComments,data)
     }
 }
 export default {
-    banner
+    banner,
+    comments
 }

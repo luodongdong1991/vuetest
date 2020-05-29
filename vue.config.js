@@ -8,11 +8,12 @@ module.exports = {
 		hotOnly: true,
 		proxy: {
 			'/api': {
-				target: 'http://localhost:4000/',
+				//用这个url 发送请求呢;
+				target: 'http://localhost:4000',
 				ws: true,
 				changeOrigin: true,
 				pathRewrite: {
-					'^/api': '/'  //这里理解成用 /apis/ 代替target里面的地址                    
+					'^/api': ''  //这里理解成用 /apis 代替target里面的地址                    
 				}
 			}
 		}

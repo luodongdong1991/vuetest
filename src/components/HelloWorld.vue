@@ -5,13 +5,14 @@
     <form action>
       <input type="text" name="name" v-model="comments.name" />
       <input type="text" name="message" v-model="comments.message" />
-      <button type="submit">clickmepost</button>
+      <button @click='postMsg' type="submit">clickmepost</button>
     </form>
   </div>
 </template>
 
 <script>
 import apiData from "../api/api";
+import api from '../api/api';
 export default {
   name: "HelloWorld",
   props: {
@@ -27,7 +28,13 @@ export default {
       }
     };
   },
-  methods: {},
+  methods: {
+    async postMsg(e){
+      e.preventDefault();     
+      let ret = await apiData.comments.postData({name:'10',message:'10'})
+      console.log(ret.data)
+    }
+  },
   async created() {
     let ret = await apiData.banner.getData();
     console.log(ret.data);

@@ -16,6 +16,7 @@ const errorHandle = (status, other) => {
             break;
         case 401:
             console.log('去登陆');
+            toLogin();
             break;
     }
 }
@@ -23,15 +24,18 @@ const errorHandle = (status, other) => {
 var instance = axios.create({
     timeout: 5000
 })
-instance.defaults.headers.post['content-type'] = 'application/x-www-form-urlencoded';
 
+//form 格式传递；
+//instance.defaults.headers.post['content-type'] = 'application/x-www-form-urlencoded';
+//application/json
+instance.defaults.headers.post['content-type'] = 'application/json';
 //请求时间拦截
 instance.interceptors.request.use(config => {
-    console.log(config);
+    console.log(config.data);
     //用qs 进行转化；
-    if (config.method === "post") {
-        config.data = qs.stringify(config.data)
-    }
+    // if (config.method === "post") {
+    //     config.data = qs.stringify(config.data)
+    // }
     return config
 }, error => {
     return Promise.reject(error)
